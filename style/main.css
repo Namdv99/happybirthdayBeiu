@@ -180,7 +180,7 @@ body {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 200px;         /* chiều cao container */
+  height: 100vh;         /* full viewport height so balloons rise from bottom */
   overflow: hidden;      /* ẩn phần ảnh vượt ngoài */
   pointer-events: none;  /* tránh chặn click */
   z-index: 10;
@@ -196,7 +196,7 @@ body {
   position: absolute;
   width: 200px;
   height: auto;
-  top: calc(100% + 40px); /* start fully below the container */
+  top: 110vh; /* start fully below the viewport */
   transform-origin: bottom center;
   opacity: 0; /* hidden until GSAP reveals */
   will-change: transform;

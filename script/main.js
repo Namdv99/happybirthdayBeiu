@@ -84,11 +84,11 @@ const animationTimeline = () => {
         // keep hidden until GSAP reveals them
         img.style.opacity = ""; // use CSS default (0) so timeline controls visibility
         // boost clarity
-        img.style.filter = "saturate(1.2) contrast(1.12)";
+        img.style.filter = "saturate(1.2) contrast(1.2)";
     });
 
-    // show balloons only when this section starts
-    tl.to(".baloons img", { duration: 2.5, stagger: 0.5, opacity: 1, y: -1000, ease: "none", repeat: -1 })
+    // show balloons from bottom to top and start after the party moment
+    tl.to(".baloons img", { duration: 7, stagger: 0.6, opacity: 1, y: "-160vh", ease: "none", repeat: -1 }, "party+=0.8")
       .from(".profile-picture", { duration: 0.5, scale: 3.5, opacity: 0, x: 25, y: -25, rotationZ: -45 }, "-=2")
       .from(".hat", { duration: 0.5, x: -100, y: 350, rotation: -180, opacity: 0 })
       .from(".wish-hbd span", { duration: 0.7, stagger: 0.1, opacity: 0, y: -50, rotation: 150, skewX: "30deg", ease: "elastic.out(1, 0.5)" })
@@ -96,6 +96,8 @@ const animationTimeline = () => {
       .from(".wish h5", { duration: 0.5, opacity: 0, y: 10, skewX: "-15deg" }, "party")
       .to(".eight svg", { duration: 1.5, stagger: 0.3, visibility: "visible", opacity: 0, scale: 80, repeat: 3, repeatDelay: 1.4 })
       .to(".six", { duration: 0.5, opacity: 0, y: 30, zIndex: -1 })
+      // after .six is gone, raise balloons above other content
+      .add(() => { document.querySelector('.seven')?.classList.add('seven--active'); })
       .from(".nine p", { duration: 1, stagger: 1.2, ...ideaTextTrans }, "+=5");
 
     const replyBtn = document.getElementById("replay");
