@@ -84,11 +84,11 @@ const animationTimeline = () => {
         // keep hidden until GSAP reveals them
         img.style.opacity = ""; // use CSS default (0) so timeline controls visibility
         // boost clarity
-        img.style.filter = "saturate(1.2) contrast(1.2)";
+        img.style.filter = "saturate(1.2) contrast(1.12)";
     });
 
-    // show balloons from bottom to top and start after the party moment
-    tl.to(".baloons img", { duration: 7, stagger: 0.6, opacity: 1, y: "-160vh", ease: "none", repeat: -1 }, "party+=0.8")
+    // show balloons from bottom to top starting after the party moment
+    tl.to(".baloons img", { duration: 2.5, stagger: 0.5, opacity: 1, y: "-160vh", ease: "none", repeat: -1 })
       .from(".profile-picture", { duration: 0.5, scale: 3.5, opacity: 0, x: 25, y: -25, rotationZ: -45 }, "-=2")
       .from(".hat", { duration: 0.5, x: -100, y: 350, rotation: -180, opacity: 0 })
       .from(".wish-hbd span", { duration: 0.7, stagger: 0.1, opacity: 0, y: -50, rotation: 150, skewX: "30deg", ease: "elastic.out(1, 0.5)" })
