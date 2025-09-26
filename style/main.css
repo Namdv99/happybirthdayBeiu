@@ -5,6 +5,9 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
+  /* fallback background color in case gradient layer is not rendered */
+  background-color: #ffe6f0;
+  min-height: 100vh;
 }
 
 .song {
@@ -36,7 +39,16 @@ body {
   position: relative;
   text-align: center;
   visibility: hidden;
-  width: 100vw;
+  width: 100%;
+  z-index: 1; /* ensure above background layer */
+}
+
+/* Prefer small-viewport height on mobile browsers when supported */
+@supports (height: 100svh) {
+  .container { height: 100svh; }
+}
+@supports (height: 100dvh) {
+  .container { height: 100dvh; }
 }
 
 /* floating love background */
@@ -44,7 +56,8 @@ body {
   position: fixed;
   inset: 0;
   background: radial-gradient(ellipse at top left, #fff0f6 0%, #ffe6f0 30%, #ffd6e7 60%, #ffd1e2 100%);
-  z-index: -2;
+  z-index: 0; /* avoid negative z-index issues on some mobile browsers */
+  pointer-events: none; /* don't block interactions */
 }
 
 .heart {
