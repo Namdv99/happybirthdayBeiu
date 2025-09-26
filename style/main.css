@@ -26,7 +26,7 @@ body {
 }
 
 .gift:hover {
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: scale(1.1);
 }
 
 .container {
@@ -37,6 +37,35 @@ body {
   text-align: center;
   visibility: hidden;
   width: 100vw;
+}
+
+/* floating love background */
+.love {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, #fff0f6 0%, #ffe6f0 30%, #ffd6e7 60%, #ffd1e2 100%);
+  z-index: -2;
+}
+
+.heart {
+  position: absolute;
+  width: 22px;
+  opacity: 0.5;
+  fill: #ff6fae;
+  top: 110vh;
+  animation: heartFloat 14s linear infinite;
+}
+
+.heart:nth-child(1) { left: 8vw; animation-duration: 16s; animation-delay: 0s; }
+.heart:nth-child(2) { left: 28vw; animation-duration: 18s; animation-delay: 2s; }
+.heart:nth-child(3) { left: 56vw; animation-duration: 15s; animation-delay: 4s; }
+.heart:nth-child(4) { left: 78vw; animation-duration: 20s; animation-delay: 1s; }
+
+@keyframes heartFloat {
+  0%   { top: 110vh; transform: translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.6; }
+  50%  { transform: translateX(15px) scale(1.05); }
+  100% { top: -20vh; transform: translateX(-10px) scale(1); opacity: 0; }
 }
 
 .container > div {
@@ -152,10 +181,11 @@ body {
 
 .baloons img {
   position: absolute;
-  width: 200px;      /* scale ảnh vừa container */
+  width: 200px;
   height: auto;
-  top: 100%;        /* bắt đầu từ dưới container */
+  top: 100%;
   transform-origin: bottom center;
+  opacity: 0; /* hide until animated */
 }
 
 .eight svg {
@@ -307,4 +337,89 @@ body {
     font-size: 1.5rem;
     font-weight: lighter;
   }
+}
+
+/* Portrait-first adjustments for phones */
+@media screen and (max-width: 500px) and (orientation: portrait) {
+  .gift { width: 120px; }
+
+  .one { font-size: 2.8rem; }
+  .two { font-size: 1rem; }
+  .three { font-size: 2rem; }
+  .five p { font-size: 1.4rem; }
+  .five .idea-5 { font-size: 2.6rem; }
+  .idea-6 span { font-size: 8rem; }
+
+  .six img { height: 260px; }
+  .six .hat { width: 50px; top: -28%; }
+
+  .seven { height: 140px; }
+  .baloons img { width: 120px; }
+
+  .wish-hbd { font-size: 2rem; }
+  .wish h5 { font-size: 1.2rem; }
+
+  .heart { width: 16px; }
+
+  .gallery-backdrop .frame {
+    width: 95vw;
+    height: 70vh;
+    border-width: 10px;
+  }
+  .gallery-backdrop .photos { gap: 10px; padding: 10px; }
+}
+
+@media screen and (max-width: 360px) and (orientation: portrait) {
+  .one { font-size: 2.2rem; }
+  .three { font-size: 1.6rem; }
+  .six img { height: 220px; }
+  .baloons img { width: 100px; }
+}
+
+/* full-screen hanging photo gallery at the end */
+.gallery-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 240, 246, 0.96);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.gallery-backdrop.active { display: flex; }
+
+.gallery-backdrop .frame {
+  width: min(1000px, 92vw);
+  height: min(640px, 80vh);
+  border: 12px solid #ff99c8;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px rgba(255, 0, 102, 0.25);
+  background: #fffafc;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-backdrop .photos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 14px;
+  padding: 14px;
+}
+
+.gallery-backdrop .photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: rotate(-2deg);
+}
+
+@media (max-width: 700px) {
+  .gallery-backdrop .photos { grid-template-columns: repeat(2, 1fr); }
 }
