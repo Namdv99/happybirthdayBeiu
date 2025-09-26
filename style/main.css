@@ -287,6 +287,30 @@ body {
   z-index: 3;
 }
 
+/* Emphasize and animate the final LOVE YOU text */
+.last-smile {
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ff2e93;
+  text-shadow: 0 0 10px rgba(255,46,147,0.6), 0 0 20px rgba(255,46,147,0.4);
+}
+
+@keyframes loveBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes loveGlow {
+  0% { color: #ff2e93; text-shadow: 0 0 10px rgba(255,46,147,0.6), 0 0 20px rgba(255,46,147,0.4); }
+  33% { color: #ff8a00; text-shadow: 0 0 10px rgba(255,138,0,0.6), 0 0 20px rgba(255,138,0,0.4); }
+  66% { color: #6a5cff; text-shadow: 0 0 10px rgba(106,92,255,0.6), 0 0 20px rgba(106,92,255,0.4); }
+  100% { color: #ff2e93; text-shadow: 0 0 10px rgba(255,46,147,0.6), 0 0 20px rgba(255,46,147,0.4); }
+}
+
+@media screen and (max-width: 500px) {
+  .last-smile { font-size: 1.8rem; }
+}
+
 /* Media Queries */
 @media screen and (max-height: 1000px) {
   .six .hat {

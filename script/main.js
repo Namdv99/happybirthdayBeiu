@@ -83,6 +83,8 @@ const animationTimeline = () => {
         img.style.transform = "scale(" + scale + ")";
         // keep hidden until GSAP reveals them
         img.style.opacity = ""; // use CSS default (0) so timeline controls visibility
+        // boost clarity
+        img.style.filter = "saturate(1.2) contrast(1.12)";
     });
 
     // show balloons only when this section starts
@@ -94,8 +96,7 @@ const animationTimeline = () => {
       .from(".wish h5", { duration: 0.5, opacity: 0, y: 10, skewX: "-15deg" }, "party")
       .to(".eight svg", { duration: 1.5, stagger: 0.3, visibility: "visible", opacity: 0, scale: 80, repeat: 3, repeatDelay: 1.4 })
       .to(".six", { duration: 0.5, opacity: 0, y: 30, zIndex: -1 })
-      .from(".nine p", { duration: 1, stagger: 1.2, ...ideaTextTrans })
-      .to(".last-smile", { duration: 0.5, rotation: 90 }, "+=1");
+      .from(".nine p", { duration: 1, stagger: 1.2, ...ideaTextTrans }, "+=5");
 
     const replyBtn = document.getElementById("replay");
     if (replyBtn) {
