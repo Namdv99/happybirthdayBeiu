@@ -73,14 +73,16 @@ const animationTimeline = () => {
     // Balloons random props
     const balloons = document.querySelectorAll(".baloons img");
     balloons.forEach((img, index) => {
+        // keep images within view on both portrait and landscape
         if (index % 2 === 0) {
-            img.style.left = Math.random() * 20 + "%";
+            img.style.left = (10 + Math.random() * 30) + "%"; // 10% - 40%
         } else {
-            img.style.left = 80 + Math.random() * 20 + "%";
+            img.style.left = (60 + Math.random() * 30) + "%"; // 60% - 90%
         }
-        const scale = 0.5 + Math.random() * 0.7;
+        const scale = 0.6 + Math.random() * 0.6;
         img.style.transform = "scale(" + scale + ")";
-        img.style.opacity = 0.5 + Math.random() * 0.5;
+        // keep hidden until GSAP reveals them
+        img.style.opacity = ""; // use CSS default (0) so timeline controls visibility
     });
 
     // show balloons only when this section starts
